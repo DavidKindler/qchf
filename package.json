@@ -1,0 +1,78 @@
+{
+  "name": "qc-header-footer",
+  "version": "1.0.0",
+  "author": "David Kindler",
+  "description": "CEDS Header/Footer",
+  "main": "./src/index.js",
+  "scripts": {
+    "build": "webpack -p --progress  --config webpack.config.prod.js",
+    "webpack": "webpack",
+    "watch": "webpack --watch",
+    "start": "webpack-dev-server --progress --profile --colors",
+    "lint": "eslint --ext js --ext jsx src || exit 0",
+    "dev": "webpack-dev-server",
+    "webpack:profile": "webpack  --profile --json --config webpack.config.prod.js > stats.json && webpack-bundle-analyzer ./stats.json",
+    "prettier": "prettier --single-quote --trailing-comma es5 --write \"{src,__tests__}/**/*.js\"",
+    "eslint": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
+    "precommit": "lint-staged",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "jest": {
+    "globals": {},
+    "setupFiles": [
+      "./jestsetup.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-jest": "^21.2.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-runtime": "^6.22.0",
+    "cross-env": "^5.1.3",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.0",
+    "eslint": "^4.10.0",
+    "eslint-config-prettier": "^2.7.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-prettier": "^2.3.1",
+    "eslint-plugin-react": "^7.4.0",
+    "html-webpack-plugin": "^2.30.1",
+    "jest": "^21.2.1",
+    "jest-cli": "^22.0.4",
+    "lerna": "^2.0.0",
+    "prettier": "^1.8.1",
+    "raw-loader": "^0.5.1",
+    "react": "16.1.0",
+    "react-dom": "16.1.0",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-test-renderer": "^16.0.0",
+    "redux": "^3.7.2",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-thunk": "^2.2.0",
+    "uglifyjs-webpack-plugin": "^1.1.6",
+    "webpack": "^3.8.1",
+    "webpack-bundle-analyzer": "2.9.2",
+    "webpack-dev-server": "^2.9.5"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "clean-webpack-plugin": "^0.1.18"
+  }
+}

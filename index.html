@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React App Boilerplate</title>
+
+    <!-- Include any custom application CSS files below the Bootstrap, font-awesome, and Freescale CSS files. -->
+    <!-- <link href="http://sword.freescale.net/css/bootstrap.min.css" rel="stylesheet"> -->
+
+    <link href="https://dev-sandbox.qualcomm.com/resources/css/qc-web.min.css" rel="stylesheet" />
+
+    <!-- <link href="https://dev-sandbox.qualcomm.com/v/1.2/softwarestore/stylesheet/storeFront.css" rel="stylesheet"> -->
+    <script src="//www.nxp.com/resources/scripts/jquery.min3.1.js"></script>
+    <script src="//www.nxp.com/resources/scripts/bootstrap.min.3.3.7.js"></script>
+
+    <script type="text/javascript" src="//assets.adobedtm.com/f2bd0c145f764c0e7b6dae5f9269061e38fabacd/satelliteLib-2fb7098ae4e0938976f1eee822973607d3f48c60-staging.js"></script>
+
+
+</head>
+
+<body>
+
+
+
+    <noscript>
+        <h2>Please enable javsacript to display this page.</h2>
+    </noscript>
+    <div id="qc-header">
+    </div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis distinctio sunt est corporis placeat sequi hic
+        earum. Maiores est eos, tempora repellat deleniti corrupti, eveniet neque excepturi velit atque at.</p>
+    <div id="qc-footer">
+    </div>
+
+
+
+    <script type="text/javascript">
+        var digitalData = {};
+        digitalData.ignorePageLoad = true;
+        digitalData.pageInfo = {};
+        digitalData.userInfo = {};
+        digitalData.siteInfo = {};
+        digitalData.searchInfo = {};
+        digitalData.eventInfo = {};
+
+        function sendAnalyticsData(qrytxt, selectedFilterString, resultCount, pageNum) {
+            console.log("params", qrytxt, selectedFilterString, resultCount, pageNum);
+            //Added by b44406 for CR-56179 on 19-05-2014 (RecordActivity tracking) -start
+            // var url = '/webapp/history/recordActivity.sp';
+            var url = '';
+            var obj = new Object;
+            obj.assetID = "softwaresearch";
+            obj.assetType = "search";
+            obj.referrerUrl = document.referrer;
+            obj.commandID = "RECORD_WEB_ACTIVITY";
+            var attrNames = "";
+            var attrValues = "";
+            var iteration = "0";
+            var s_lang_cd = getQryParamForAnalytics(document.URL, 'lang_cd');
+            var lang = s_lang_cd;
+            if (lang != null && lang != "") {
+                attrNames += "lang@@";
+                attrValues += lang + "@@";
+            } else {
+                attrNames += "lang@@";
+                attrValues += "en@@";
+            }
+            if (resultCount != "null" && resultCount != null && !(resultCount.length == 0)) {
+                attrNames = attrNames + "Result Count" + "@@";
+                attrValues = attrValues + resultCount + "@@";
+            } else {
+                attrNames = attrNames + "Result Count" + "@@";
+                attrValues = attrValues + "0" + "@@";
+            }
+            if (pageNum != "null" && pageNum != null && !(pageNum.length == 0)) {
+                attrNames = attrNames + "Current Page Number" + "@@";
+                attrValues = attrValues + pageNum + "@@";
+            }
+
+            attrNames = attrNames + "Query Text" + "@@";
+            attrValues = attrValues + qrytxt + "@@";
+
+
+            if (iteration != null && iteration != "") {
+                attrNames = attrNames + "Iteration" + "@@";
+                attrValues = attrValues + iteration + "@@";
+            }
+            var attempt = "0";
+            if (attempt != null && attempt != "") {
+                attrNames = attrNames + "Attempt" + "@@";
+                attrValues = attrValues + attempt + "@@";
+            }
+            var selectedAsset = "SoftwareTools";
+            if (selectedAsset != "null" && selectedAsset != null && !(selectedAsset.length == 0)) {
+                attrNames = attrNames + "Selected Asset" + "@@";
+                attrValues = attrValues + selectedAsset + "@@";
+            }
+            //added by b44406 - CR56179 start
+            if (selectedFilterString != "null" && selectedFilterString != null) {
+                attrNames = attrNames + "category" + "@@";
+                attrValues = attrValues + "Software & Tools Type" + "@@";
+
+                var filterObj = new Object();
+                var parametrics = selectedFilterString.split("$");
+                for (var i = 0; i < parametrics.length; i++) {
+
+                    if (parametrics[i] != null && parametrics[i] != "null") {
+                        parametrics[i] = parametrics[i].replace(/!`/gi, ' - ');
+                        parametrics[i] = parametrics[i].replace(/>/gi, '');
+                        var splitValue = parametrics[i].split("~");
+                        if (splitValue[0] != null && splitValue[0] != "null" && splitValue[1] != null && splitValue[1] != "null") {
+
+                            var keyname = splitValue[0];
+                            var dataValue = splitValue[1];
+                            if (filterObj[keyname] != null) {
+                                filterObj[keyname] += 1;
+                            } else {
+                                filterObj[keyname] = 1;
+                            }
+                            if (keyname != "Asset Type") {
+                                attrNames = attrNames + keyname + "_" + filterObj[keyname] + "@@";
+                                attrValues = attrValues + dataValue + "@@";
+                            }
+
+                        }
+
+                    }
+                }
+
+            }
+
+
+            //added by b44406 - CR56179 end
+            attrNames = attrNames.substring(0, attrNames.length - 2);
+            attrValues = attrValues.substring(0, attrValues.length - 2);
+            attrValues = replaceAll(attrValues, "%26", "&");
+            attrValues = replaceAll(attrValues, "plus", "+");
+            attrValues = replaceAll(attrValues, "~", "/");
+            attrValues = replaceAll(attrValues, "&%238482%3B", "&#8482;");
+            obj.attrNames = attrNames;
+            obj.attrValues = attrValues;
+            digitalData.pageInfo.pageCategory = "SOFTWARE SEARCH";
+            var s_contentFinder = getContentFinding(document.referrer, document.URL);
+            //Added by b44406 for CR-56179 on 19-05-2014 (RecordActivity tracking) -End
+
+            //Modified by b47045 for CR-55852 to clear vars on 25 Jun 2014
+            //s.manageVars("clearVars","prop4,prop2,prop5,eVar2",1);
+
+            // Modified the pagename by B12883 for CR56179
+            digitalData.pageInfo.pageName = "Software Center";
+            digitalData.pageInfo.siteSection1 = "Software Search";
+            digitalData.pageInfo.pageType = "Software Center";
+            digitalData.pageInfo.localTitle = "Software Center";
+            digitalData.siteInfo.sitePlatform = "full";
+            digitalData.pageInfo.pageEventPathing = "D=pageName";
+            digitalData.searchInfo.searchFilterList = selectedFilterString;
+            if (resultCount) {
+                digitalData.searchInfo.resultCount = resultCount;
+            }
+            else {
+                if (qrytxt != "")
+                    digitalData.searchInfo.resultCount = 'zero';
+            }
+
+            digitalData.userInfo.fslVisitorID = getCookieForSiteCatalyst("freescale_visitor_id");
+            if (qrytxt != "") {
+                digitalData.searchInfo.searchkeyword = qrytxt;
+                if (digitalData.eventInfo.pageAction != null && digitalData.eventInfo.pageAction != "undefined" && digitalData.eventInfo.pageAction != "") {
+                    //Modified start by b47045 for CR-55852 to clear vars on 26 Jun 2014
+                    if (digitalData.eventInfo.pageAction.indexOf('Removed') != -1 || digitalData.eventInfo.pageAction.indexOf('Reset') != -1) {
+                        digitalData.pageInfo.pageEventPathing = "Software  Store: Results of " + qrytxt + ", Filters Removed";
+                        digitalData.eventInfo.name = 'searchEvent';
+                    } else if (digitalData.eventInfo.pageAction.indexOf('Applied') != -1) {
+                        digitalData.pageInfo.pageEventPathing = "Software  Store: Results of " + qrytxt + ", Filters Applied";
+                        digitalData.eventInfo.name = 'searchEvent';
+                    } else if (digitalData.eventInfo.pageAction.indexOf('Popularity') != -1) {
+                        digitalData.pageInfo.pageEventPathing = "Software Search - Sort by Popularity";
+                        digitalData.eventInfo.name = 'searchEvent';
+                    } else if (digitalData.eventInfo.pageAction.indexOf('Relevance') != -1) {
+                        digitalData.pageInfo.pageEventPathing = "Software Search - Sort by Relevance";
+                        digitalData.eventInfo.name = 'searchEvent';
+                    } else {
+                        digitalData.pageInfo.pageEventPathing = "Software Store: Results of " + qrytxt;
+                        digitalData.eventInfo.name = 'search';
+                    }
+                } else {
+                    digitalData.pageInfo.pageEventPathing = "Software Store: Results of " + qrytxt;
+                    digitalData.eventInfo.name = 'search';
+                }
+            }
+            else {
+                digitalData.searchInfo.searchkeyword = "";
+                if (digitalData.eventInfo.pageAction != null && digitalData.eventInfo.pageAction != "undefined" && digitalData.eventInfo.pageAction != "") {
+                    if (digitalData.eventInfo.pageAction.indexOf('Removed') != -1 || digitalData.eventInfo.pageAction.indexOf('Reset') != -1) {
+                        digitalData.pageInfo.pageEventPathing = "Software Store: No Keyword, Filters Removed";
+                        digitalData.eventInfo.name = 'searchEvent';
+                    } else if (digitalData.eventInfo.pageAction.indexOf('Applied') != -1) {
+                        digitalData.pageInfo.pageEventPathing = "Software Store: No Keyword, Filters Applied";
+                        digitalData.eventInfo.name = 'searchEvent';
+                    } else if (digitalData.eventInfo.pageAction.indexOf('Popularity') != -1) {
+                        digitalData.pageInfo.pageEventPathing = "Software Search - Sort by Popularity";
+                        digitalData.eventInfo.name = 'searchEvent';
+                    } else if (digitalData.eventInfo.pageAction.indexOf('Relevance') != -1) {
+                        digitalData.pageInfo.pageEventPathing = "Software Search - Sort by Relevance";
+                        digitalData.eventInfo.name = 'searchEvent';
+                    } else {
+                        digitalData.pageInfo.pageEventPathing = "Software Store: No Keyword";
+                        digitalData.eventInfo.name = 'search';
+                    }
+                } else {
+                    digitalData.pageInfo.pageEventPathing = "Software Store: No Keyword";
+                    digitalData.eventInfo.name = 'search';
+                }
+            }
+            //Modified end by b47045 for CR-55852 to clear vars on 26 Jun 2014
+
+            //Added by b51504 for CR- 58339:START
+
+
+            var path = location.pathname;
+            var lang_cd = '';
+            if (typeof path != 'undefined') {
+                lang_cd = path.substr(0, path.indexOf('/', 1));
+                if (lang_cd.match('^/webapp')) {
+                    lang_cd = 'en';
+                }
+                s_lang_cd = lang_cd.replace("/", "");
+            }
+
+
+            digitalData.siteInfo.lang = s_lang_cd;
+            if (s_contentFinder != null && s_contentFinder != '') {
+                digitalData.pageInfo.contentFinding = s_contentFinder;
+            }
+            digitalData.pageInfo.trackingID = getQryParamForAnalytics(document.URL, "tid");
+
+            var s_currentUrl = "";
+            if (document.URL.indexOf("?") != -1) {
+                s_currentUrl = document.URL.split("?")[0];
+
+            }
+            else {
+                s_currentUrl = document.URL.split("#")[0];
+            }
+
+
+            var langAnalytics = "zh-Hans,ja,ko";
+            for (var i = 0; i < langAnalytics.split(",").length; i++) {
+                var lng_Code = langAnalytics.split(",")[i];
+                s_currentUrl = s_currentUrl.replace("/" + lng_Code + "/", "/");
+            }
+
+            digitalData.pageInfo.pageURLClean = s_currentUrl;
+
+            document.getElementById("container").style.display = "block";
+            _satellite.track("trackSoftwareCenterAnalytics")
+            //Modified by b47045 for CR-55852 to clear vars on 25 Jun 2014
+            digitalData.pageInfo.contentFinding = digitalData.pageInfo.pageEventPathing = digitalData.eventInfo.pageAction = digitalData.eventInfo.pageSubaction = digitalData.searchInfo.resultCount = "";
+
+            //Added by b44406 for CR-56179 on 19-05-2014 (RecordActivity tracking) -start
+            recordActivity(url, obj);
+            //Added by b44406 for CR-56179 on 19-05-2014 (RecordActivity tracking) -end
+
+        }
+        //Added by b44406 for CR-56179 on 19-05-2014 (RecordActivity tracking) -start
+        function recordActivity(url, obj) {
+            sendPostMessage(url, obj);
+        }
+        function replaceAll(source, toReplace, replaceWith) {
+            var strReplaceAll = source;
+            var intIndexOfMatch = strReplaceAll.indexOf(toReplace);
+            while (intIndexOfMatch != -1) {
+                strReplaceAll = strReplaceAll.replace(toReplace, replaceWith);
+                intIndexOfMatch = strReplaceAll.indexOf(toReplace);
+            }
+            return strReplaceAll;
+        }
+        function sendPostMessage(url, obj) {
+            jQuery.post(url, obj, function (data) {
+            });
+        }
+		//Added by b44406 for CR-56179 on 19-05-2014 (RecordActivity tracking) -end
+		/* function showHomepageBreadcrumb() {
+			   $('div#bc ul li:nth-child(2)').html(getTranslatedText("Software Center"));
+			   $('div#bc ul li:gt(1)').remove();
+			  }
+			  function showSearchBreadcrumb(homeUrl) {
+
+			   if($('div#bc ul > li').length == 2) {
+				//$('div#bc ul li:nth-child(1) a').attr('href',hostUrl);
+				$('div#bc ul li:nth-child(2)').html("<a href='"+homeUrl+"' target='_self'>"+getTranslatedText("Software Center")+"</a>");
+				$('div#bc ul').append("<li>"+getTranslatedText("Search")+"</li>");
+			   }
+			  } */
+    </script>
+    <script type="text/javascript" src="https://www.nxp.com/v/1.97/resources/scripts/analytics/webanalytics.js"></script>
+    <script async src="//branding.nxp.com/resources/qc-simple-header-footer.js"></script>
+
+</body>
+
+</html>
