@@ -3,13 +3,18 @@ import { connect } from 'react-redux';
 import Desktop from './Desktop';
 import Tablet from './Tablet';
 import Mobile from './Mobile';
+import Aux from '../../utilities/ReactAux';
 
 export class Header extends Component {
   render() {
     const { isMobile, isTablet } = this.props.screen;
     let megaMenu = (isMobile && <Mobile />) || (isTablet && <Tablet />) || <Desktop />;
 
-    return <div>{megaMenu}</div>;
+    return (
+      <Aux>
+        <div className="navigationContainer">{megaMenu}</div>
+      </Aux>
+    );
   }
 }
 

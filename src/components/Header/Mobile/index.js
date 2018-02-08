@@ -1,14 +1,20 @@
 import React from 'react';
 import Login from '../Login';
 import Logo from '../../Logo';
-
+import Aux from '../../../utilities/ReactAux';
+import MegaMenuMobile from '../MegaMenu/Mobile';
 const Mobile = () => {
   return (
-    <div className="mobile">
-      Mobile Header
-      <Logo />
-      <Login />
-    </div>
+    <Aux>
+      <div className="nav-spacer mobile" />
+      <div className="container">
+        <div className="mobile">
+          <MegaMenuMobile />
+          <Logo />
+          <Login />
+        </div>
+      </div>
+    </Aux>
   );
 };
 

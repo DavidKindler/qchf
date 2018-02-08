@@ -1,0 +1,45 @@
+.navigationContainer {
+  position: relative;
+
+  .nav-spacer {
+    &.tablet,
+    &.desktop {
+      margin-top: 75px;
+      position: relative;
+    }
+    &.mobile {
+      margin-top: 55px;
+      position: relative;
+    }
+  }
+
+  .container {
+    padding: 0px;
+    margin: 0px;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    padding: 0px;
+    border-bottom: 1px solid rgb(230, 232, 233);
+    .desktop {
+      height: 100px;
+      background-color: red;
+      #logo {
+      }
+    }
+
+    .tablet {
+      height: 80px;
+      background-color: yellow;
+      #logo {
+      }
+    }
+
+    .mobile {
+      height: 60px;
+      background-color: lime;
+      #logo {
+      }
+    }
+  }
+}

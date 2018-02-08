@@ -5,6 +5,8 @@ var loaders = require('./webpack.loaders.prod');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin'); //installed via npm
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 // the path(s) that should be cleaned
 let pathsToClean = ['dist'];
 // the clean options to use
@@ -39,7 +41,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')
-      },
+      }
       // ROOT_URL_SEARCH: JSON.stringify('/webapp/software-center/rest/v1/software/search/'),
       // ROOT_URL_SEARCH_Q: JSON.stringify('/webapp/software-center/rest/v1/software/home/'),
       // ROOT_URL_SUGGEST: JSON.stringify('/suggest/?max=10&site=qc_en&client=qc_search_all_results&access=p&format=rich'),
@@ -55,6 +57,10 @@ module.exports = {
         css: ['style.css'],
         js: ['bundle.js']
       }
+    }),
+    new ExtractTextPlugin({
+      filename: 'style.css',
+      disable: process.env.NODE_ENV === 'development'
     })
   ]
 };

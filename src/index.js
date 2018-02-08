@@ -1,3 +1,4 @@
+import './styles.scss';
 // import all external dependencies
 import React from 'react';
 import ReactDOM from 'react-dom';

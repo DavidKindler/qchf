@@ -1,13 +1,20 @@
 import React from 'react';
 import Login from '../Login';
 import Logo from '../../Logo';
-
+import Aux from '../../../utilities/ReactAux';
+import MegaMenuTablet from '../MegaMenu/Tablet';
 const Tablet = () => {
   return (
-    <div className="tablet">
-      <Logo />
-      Tablet Header<Login />
-    </div>
+    <Aux>
+      <div className="nav-spacer tablet" />
+      <div className="container">
+        <div className="tablet">
+          <MegaMenuTablet />
+          <Logo />
+          <Login />
+        </div>
+      </div>
+    </Aux>
   );
 };
 
