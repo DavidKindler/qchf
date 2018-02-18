@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Desktop from './Desktop';
-import Tablet from './Tablet';
-import Mobile from './Mobile';
+import Desktop from './Desktop/DesktopHeader';
+import Tablet from './Tablet/TabletHeader';
+import Mobile from './Mobile/MobileHeader';
 import Aux from '../../utilities/ReactAux';
 
 export class Header extends Component {

@@ -22,23 +22,340 @@
     padding: 0px;
     border-bottom: 1px solid rgb(230, 232, 233);
     .desktop {
-      height: 100px;
+      height: 60px;
       background-color: red;
-      #logo {
+      display: flex;
+      justify-content: space-between;
+      padding: 0px 40px;
+      align-items: center;
+
+      .logo {
+        position: relative;
+        align-items: center;
+        display: inline-flex;
+        flex: 0 1 auto;
+        width: 25%;
+      }
+      .desktop-menu {
+        justify-content: space-around;
+        max-width: 700px;
+        position: relative;
+        -webkit-box-align: center;
+        align-items: center;
+        display: inline-flex;
+        flex: 0 1 auto;
+        width: 50%;
+        box-sizing: border-box;
+        padding: 0;
+      }
+      .iconContainer {
+        justify-content: flex-end;
+        position: relative;
+        align-items: center;
+        display: inline-flex;
+        flex: 0 1 auto;
+        width: 25%;
+
+        button.login-button {
+          cursor: pointer;
+          height: 20px;
+          width: 20px;
+          // fill: rgb(34, 34, 34);
+          background: none;
+          background-color: transparent;
+          border: none;
+          backface-visibility: hidden;
+          position: relative;
+          margin: 0px 0px 0px 10%;
+          background: transparent;
+          overflow: visible;
+          // width: auto;
+          -webkit-font-smoothing: inherit;
+          -moz-osx-font-smoothing: inherit;
+          -webkit-appearance: none;
+          // margin: 0px;
+          padding: 0px;
+        }
+
+        a.shopping-cart-link {
+          cursor: pointer;
+          height: 20px;
+          width: 20px;
+          fill: rgb(34, 34, 34);
+          backface-visibility: hidden;
+          margin: 0px 0px 0px 10%;
+        }
+
+        button.search-button {
+          cursor: pointer;
+          height: 20px;
+          width: 20px;
+          backface-visibility: hidden;
+          position: relative;
+          margin: 0px 0px 0px 10%;
+          background: none;
+          background-color: transparent;
+          border: none;
+          color: inherit;
+          border: none;
+          font: inherit;
+          line-height: normal;
+          overflow: visible;
+          width: auto;
+          -webkit-font-smoothing: inherit;
+          -moz-osx-font-smoothing: inherit;
+          -webkit-appearance: none;
+          padding: 0px;
+        }
+
+        .search-icon {
+          width: 20px;
+          height: 20px;
+        }
       }
     }
 
     .tablet {
-      height: 80px;
+      height: 60px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0px 10px;
+      align-items: center;
       background-color: yellow;
-      #logo {
+
+      .logo {
+        justify-content: space-around;
+        max-width: 700px;
+        position: relative;
+        -webkit-box-align: center;
+        align-items: center;
+        display: inline-flex;
+        flex: 0 1 auto;
+        width: 50%;
+        box-sizing: border-box;
+        padding: 0;
+      }
+      .tablet-menu-icon {
+        position: relative;
+        -webkit-box-align: center;
+        align-items: center;
+        display: inline-flex;
+        flex: 0 1 auto;
+        width: 25%;
+        box-sizing: border-box;
+        padding: 0;
+        color: #777a7d;
+
+        button {
+          cursor: pointer;
+          height: 20px;
+          width: 20px;
+          fill: rgb(34, 34, 34);
+          backface-visibility: hidden;
+          position: relative;
+          margin: 0px 0px 0px 10%;
+          color: inherit;
+          -webkit-font-smoothing: inherit;
+          -webkit-appearance: none;
+          background: transparent;
+          border-width: initial;
+          border-style: none;
+          border-color: initial;
+          border-image: initial;
+          font: inherit inherit inherit inherit inherit inherit inherit inherit;
+          overflow: visible;
+          margin: 0px;
+          padding: 0px;
+        }
+      }
+      .tablet-menu {
+        justify-content: space-around;
+        max-width: 700px;
+        position: relative;
+        -webkit-box-align: center;
+        align-items: center;
+        display: inline-flex;
+        flex: 0 1 auto;
+        width: 50%;
+        box-sizing: border-box;
+        padding: 0;
+      }
+      .iconContainer {
+        justify-content: flex-end;
+        position: relative;
+        align-items: center;
+        display: inline-flex;
+        flex: 0 1 auto;
+        width: 25%;
+
+        button.login-button {
+          cursor: pointer;
+          height: 20px;
+          width: 20px;
+          // fill: rgb(34, 34, 34);
+          background: none;
+          background-color: transparent;
+          border: none;
+          backface-visibility: hidden;
+          position: relative;
+          margin: 0px 0px 0px 10%;
+          background: transparent;
+          overflow: visible;
+          // width: auto;
+          -webkit-font-smoothing: inherit;
+          -moz-osx-font-smoothing: inherit;
+          -webkit-appearance: none;
+          // margin: 0px;
+          padding: 0px;
+        }
+
+        a.shopping-cart-link {
+          cursor: pointer;
+          height: 20px;
+          width: 20px;
+          fill: rgb(34, 34, 34);
+          backface-visibility: hidden;
+          margin: 0px 0px 0px 10%;
+        }
+
+        button.search-button {
+          cursor: pointer;
+          height: 20px;
+          width: 20px;
+          backface-visibility: hidden;
+          position: relative;
+          margin: 0px 0px 0px 10%;
+          background: none;
+          background-color: transparent;
+          border: none;
+          color: inherit;
+          border: none;
+          font: inherit;
+          line-height: normal;
+          overflow: visible;
+          width: auto;
+          -webkit-font-smoothing: inherit;
+          -moz-osx-font-smoothing: inherit;
+          -webkit-appearance: none;
+          padding: 0px;
+        }
+
+        .search-icon {
+          width: 20px;
+          height: 20px;
+        }
       }
     }
 
     .mobile {
-      height: 60px;
+      height: 55px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0px 10px;
+      align-items: center;
       background-color: lime;
-      #logo {
+
+      .logo {
+        position: relative;
+        align-items: center;
+        display: inline-flex;
+        flex: 0 1 auto;
+      }
+      .mobile-menu-icon {
+        position: relative;
+        -webkit-box-align: center;
+        align-items: center;
+        display: inline-flex;
+        flex: 0 1 auto;
+        width: 25%;
+        box-sizing: border-box;
+        padding: 0;
+        color: #777a7d;
+
+        button {
+          cursor: pointer;
+          height: 20px;
+          width: 20px;
+          fill: rgb(34, 34, 34);
+          backface-visibility: hidden;
+          position: relative;
+          margin: 0px 0px 0px 10%;
+          color: inherit;
+          -webkit-font-smoothing: inherit;
+          -webkit-appearance: none;
+          background: transparent;
+          border-width: initial;
+          border-style: none;
+          border-color: initial;
+          border-image: initial;
+          font: inherit inherit inherit inherit inherit inherit inherit inherit;
+          overflow: visible;
+          margin: 0px;
+          padding: 0px;
+        }
+      }
+      .iconContainer {
+        justify-content: flex-end;
+        position: relative;
+        align-items: center;
+        display: inline-flex;
+        flex: 0 1 auto;
+        width: 25%;
+
+        button.login-button {
+          cursor: pointer;
+          height: 20px;
+          width: 20px;
+          // fill: rgb(34, 34, 34);
+          background: none;
+          background-color: transparent;
+          border: none;
+          backface-visibility: hidden;
+          position: relative;
+          margin: 0px 0px 0px 10%;
+          background: transparent;
+          overflow: visible;
+          // width: auto;
+          -webkit-font-smoothing: inherit;
+          -moz-osx-font-smoothing: inherit;
+          -webkit-appearance: none;
+          // margin: 0px;
+          padding: 0px;
+        }
+
+        a.shopping-cart-link {
+          cursor: pointer;
+          height: 20px;
+          width: 20px;
+          fill: rgb(34, 34, 34);
+          backface-visibility: hidden;
+          margin: 0px 0px 0px 10%;
+        }
+
+        button.search-button {
+          cursor: pointer;
+          backface-visibility: hidden;
+          position: relative;
+          margin: 0px 0px 0px 10%;
+          background: none;
+          background-color: transparent;
+          border: none;
+          color: inherit;
+          border: none;
+          font: inherit;
+          line-height: normal;
+          overflow: visible;
+          width: auto;
+          -webkit-font-smoothing: inherit;
+          -moz-osx-font-smoothing: inherit;
+          -webkit-appearance: none;
+          padding: 0px;
+        }
+
+        .search-icon {
+          width: 20px;
+          height: 20px;
+        }
       }
     }
   }

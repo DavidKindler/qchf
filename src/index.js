@@ -7,8 +7,8 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import rootReducer from './store/reducers/index';
 import returnLang from './utilities/returnLang';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import { setLanguage, screenResize } from './store/actions/index';
 
 const composeEnhancers =
