@@ -78,7 +78,7 @@
     "webpack-dev-server": "^2.9.5"
   },
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.18.1",
     "clean-webpack-plugin": "^0.1.18"
   }
 }
