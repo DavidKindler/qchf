@@ -79,6 +79,6 @@
   },
   "dependencies": {
     "axios": "^0.18.1",
-    "clean-webpack-plugin": "^0.1.18"
+    "clean-webpack-plugin": "^0.1.19"
   }
 }
